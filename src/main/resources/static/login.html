@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DevTrack — Login</title>
+  <link rel="stylesheet" href="auth.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+</head>
+<body>
+
+<div class="login-container">
+  <div class="login-card">
+
+    <div class="logo">
+      <div class="logo-icon">
+        <svg width="22" height="22" viewBox="0 0 30 30" fill="none">
+          <path d="M6 24 L6 10 L15 4 L24 10 L24 24"
+                stroke="#ffffff" stroke-width="2.2"
+                stroke-linecap="round" stroke-linejoin="round"/>
+          <polyline points="10,24 10,16 15,13 20,16 20,24"
+                    stroke="#5DCAA5" stroke-width="2.2"
+                    stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="15" cy="4" r="2.2" fill="#5DCAA5"/>
+        </svg>
+      </div>
+      <h1>DevTrack</h1>
+      <p>Developer Management Platform</p>
+    </div>
+
+    <!-- ✅ Success message (shown after register redirect) -->
+    <div id="successMsg" class="success-msg" style="display:none"></div>
+
+    <div class="form">
+
+      <div class="input-group">
+        <label>Email</label>
+        <input type="email" id="email" placeholder="Enter your email">
+      </div>
+
+      <div class="input-group">
+        <label>Password</label>
+        <input type="password" id="password" placeholder="Enter your password"
+               onkeydown="if(event.key==='Enter') login()">
+      </div>
+
+      <!-- ✅ Error message div -->
+      <div id="loginError" class="error-msg" style="display:none"></div>
+
+      <!-- ✅ Button with id -->
+      <button id="loginBtn" onclick="login()">
+        <i class="ti ti-login"></i> Sign In
+      </button>
+
+      <div class="register-link">
+        Don't have an account?
+        <a href="register.html">Register</a>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script src="auth.js"></script>
+</body>
+</html>

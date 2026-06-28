@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevTrack</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+</head>
+<body>
+
+<div class="shell">
+
+    <!-- ICON RAIL -->
+    <div class="rail">
+        <div class="rb on" id="rail-directory" title="Directory" onclick="showView('directory')">
+            <i class="ti ti-layout-grid"></i>
+        </div>
+        <div class="rb" id="rail-search" title="Search" onclick="focusSearch()">
+            <i class="ti ti-search"></i>
+        </div>
+        <div class="rb" id="rail-analytics" title="Analytics" onclick="showView('analytics')">
+            <i class="ti ti-chart-bar"></i>
+        </div>
+        <div class="rsep"></div>
+        <div class="rb" id="rail-settings" title="Settings" onclick="showView('settings')">
+            <i class="ti ti-settings"></i>
+        </div>
+    </div>
+
+    <!-- MAIN PAGE -->
+    <div class="page">
+
+        <!-- TOPBAR -->
+        <div class="topbar">
+            <div class="logo">
+                <div class="logo-mark">
+                    <svg width="16" height="16" viewBox="0 0 30 30" fill="none">
+                        <path d="M6 24 L6 10 L15 4 L24 10 L24 24"
+                              stroke="#ffffff" stroke-width="2.2"
+                              stroke-linecap="round" stroke-linejoin="round"/>
+                        <polyline points="10,24 10,16 15,13 20,16 20,24"
+                                  stroke="#5DCAA5" stroke-width="2.2"
+                                  stroke-linecap="round" stroke-linejoin="round"/>
+                        <circle cx="15" cy="4" r="2.2" fill="#5DCAA5"/>
+                    </svg>
+                </div>
+                <span class="logo-name">DevTrack</span>
+            </div>
+            <div class="tb-right">
+                <span class="topbar-view-label" id="topbarLabel">Directory</span>
+                <span class="user-badge" id="userBadge"></span>
+                <button class="btn" onclick="logout()">
+                    <i class="ti ti-logout"></i>Logout
+                </button>
+                <button class="btn btn-p" onclick="toggleForm()">
+                    <i class="ti ti-plus"></i>Add dev
+                </button>
+            </div>
+        </div>
+
+        <!-- VIEW: DIRECTORY -->
+        <div class="view" id="view-directory">
+            <div class="body">
+
+                <div class="search-wrap">
+                    <i class="ti ti-search"></i>
+                    <input id="searchInput"
+                           placeholder="Search by name, stack, or location..."
+                           oninput="handleSearch()">
+                    <button class="clear-btn" id="clearBtn"
+                            onclick="clearSearch()" style="display:none">
+                        <i class="ti ti-x"></i>
+                    </button>
+                </div>
+
+                <div class="chips" id="chipRow">
+                    <div class="chip on" onclick="filterByLevel(null, this)">
+                        All <span class="cn" id="totalChip">0</span>
+                    </div>
+                    <div class="chip" onclick="filterByLevel('junior', this)">
+                        Junior <span class="cn" id="juniorChip">0</span>
+                    </div>
+                    <div class="chip" onclick="filterByLevel('mid', this)">
+                        Mid <span class="cn" id="midChip">0</span>
+                    </div>
+                    <div class="chip" onclick="filterByLevel('senior', this)">
+                        Senior <span class="cn" id="seniorChip">0</span>
+                    </div>
+                    <div id="locationChips" style="display:contents"></div>
+                </div>
+
+                <div class="stats-bar">
+                    <div class="stat-item">
+                        <span class="sn" id="statTotal">0</span>
+                        <span class="sl">developers</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="sn" id="statLocations">0</span>
+                        <span class="sl">locations</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="sn" id="statStacks">0</span>
+                        <span class="sl">tech stacks</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="sn" id="statJuniorPct">0%</span>
+                        <span class="sl">junior</span>
+                    </div>
+                </div>
+
+                <div class="add-form" id="addForm" style="display:none">
+                    <div class="fh" id="formTitle">New developer</div>
+                    <input type="hidden" id="engineerId">
+                    <div class="fg">
+                        <div class="ff">
+                            <label>Full name</label>
+                            <input id="name" placeholder="Divya Allam">
+                        </div>
+                        <div class="ff">
+                            <label>Email</label>
+                            <input id="email" placeholder="divya@email.com" type="email">
+                        </div>
+                    </div>
+                    <div class="fg">
+                        <div class="ff">
+                            <label>Tech stack</label>
+                            <input id="techstack" placeholder="Java, Spring Boot, MySQL">
+                        </div>
+                        <div class="ff">
+                            <label>Location</label>
+                            <input id="location" placeholder="Hyderabad">
+                        </div>
+                    </div>
+                    <div class="ff" style="max-width:220px">
+                        <label>Level</label>
+                        <select id="experience">
+                            <option value="">Select level</option>
+                            <option value="junior">Junior</option>
+                            <option value="mid">Mid</option>
+                            <option value="senior">Senior</option>
+                        </select>
+                    </div>
+                    <div id="formError" class="form-error" style="display:none"></div>
+                    <div class="fa">
+                        <button class="btn" onclick="cancelForm()">Discard</button>
+                        <button class="btn btn-p" onclick="saveEngineer()">
+                            <i class="ti ti-device-floppy"></i>Save developer
+                        </button>
+                    </div>
+                </div>
+
+                <div class="row-meta">
+                    <span class="rc" id="devCount">0 developers</span>
+                    <div class="sort-wrap">
+                        <label class="sort-label-text">Sort by</label>
+                        <select class="sort-select" id="sortSelect" onchange="onSortChange()">
+                            <option value="0">Name A–Z</option>
+                            <option value="1">Name Z–A</option>
+                            <option value="2">ID Low–High</option>
+                            <option value="3">ID High–Low</option>
+                            <option value="4">Experience (Junior first)</option>
+                            <option value="5">Experience (Senior first)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid" id="devGrid"></div>
+                <div class="pagination" id="pagination"></div>
+
+                <div class="empty" id="emptyState" style="display:none">
+                    <i class="ti ti-users-minus"></i>
+                    <p>No developers found</p>
+                    <span>Try a different search or filter</span>
+                </div>
+
+            </div>
+        </div>
+        <!-- END VIEW: DIRECTORY -->
+
+        <!-- VIEW: ANALYTICS -->
+        <div class="view" id="view-analytics" style="display:none">
+            <div class="body">
+
+                <div class="an-summary">
+                    <div class="an-card">
+                        <div class="an-card-icon teal"><i class="ti ti-users"></i></div>
+                        <div>
+                            <div class="an-card-val" id="an-total">0</div>
+                            <div class="an-card-label">Total developers</div>
+                        </div>
+                    </div>
+                    <div class="an-card">
+                        <div class="an-card-icon amber"><i class="ti ti-map-pin"></i></div>
+                        <div>
+                            <div class="an-card-val" id="an-locations">0</div>
+                            <div class="an-card-label">Locations</div>
+                        </div>
+                    </div>
+                    <div class="an-card">
+                        <div class="an-card-icon purple"><i class="ti ti-code"></i></div>
+                        <div>
+                            <div class="an-card-val" id="an-stacks">0</div>
+                            <div class="an-card-label">Tech stacks</div>
+                        </div>
+                    </div>
+                    <div class="an-card">
+                        <div class="an-card-icon blue"><i class="ti ti-star"></i></div>
+                        <div>
+                            <div class="an-card-val" id="an-senior-pct">0%</div>
+                            <div class="an-card-label">Senior ratio</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="an-grid">
+                    <div class="an-panel">
+                        <div class="an-panel-title">Experience breakdown</div>
+                        <div class="an-bars" id="an-exp-bars"></div>
+                    </div>
+                    <div class="an-panel">
+                        <div class="an-panel-title">Location distribution</div>
+                        <div class="an-bars" id="an-loc-bars"></div>
+                    </div>
+                    <div class="an-panel an-panel-wide">
+                        <div class="an-panel-title">Top tech stacks</div>
+                        <div class="an-tags-cloud" id="an-stacks-cloud"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- END VIEW: ANALYTICS -->
+
+        <!-- VIEW: SETTINGS -->
+        <div class="view" id="view-settings" style="display:none">
+            <div class="body">
+                <div class="settings-wrap">
+
+                    <div class="settings-section">
+                        <div class="settings-section-title">Appearance</div>
+                        <div class="setting-row">
+                            <div class="setting-info">
+                                <div class="setting-name">Theme</div>
+                                <div class="setting-desc">Switch between dark and light mode</div>
+                            </div>
+                            <div class="theme-toggle" id="themeToggle" onclick="toggleTheme()">
+                                <div class="theme-thumb"></div>
+                            </div>
+                        </div>
+                        <div class="setting-row">
+                            <div class="setting-info">
+                                <div class="setting-name">Cards per page</div>
+                                <div class="setting-desc">How many developer cards to show per page</div>
+                            </div>
+                            <select class="setting-select" id="pageSizeSelect" onchange="onPageSizeChange()">
+                                <option value="3">3</option>
+                                <option value="6" selected>6</option>
+                                <option value="9">9</option>
+                                <option value="12">12</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="settings-section">
+                        <div class="settings-section-title">Account</div>
+                        <div class="setting-row">
+                            <div class="setting-info">
+                                <div class="setting-name">Logged in as</div>
+                                <div class="setting-desc" id="settingsEmail">—</div>
+                            </div>
+                            <button class="btn-danger" onclick="logout()">
+                                <i class="ti ti-logout"></i>Logout
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="settings-section">
+                        <div class="settings-section-title">About</div>
+                        <div class="setting-row">
+                            <div class="setting-info">
+                                <div class="setting-name">DevTrack</div>
+                                <div class="setting-desc">Developer talent directory · Built with Spring Boot + HTML/CSS/JS</div>
+                            </div>
+                            <span class="setting-badge">v1.0</span>
+                        </div>
+                        <div class="setting-row">
+                            <div class="setting-info">
+                                <div class="setting-name">API endpoint</div>
+                                <div class="setting-desc">http://localhost:8080/api/v1/software-engineers</div>
+                            </div>
+                            <span class="setting-badge teal-badge">Live</span>
+                        </div>
+                    </div>
+
+                    <div class="settings-section danger-section">
+                        <div class="settings-section-title danger-title">Danger zone</div>
+                        <div class="setting-row">
+                            <div class="setting-info">
+                                <div class="setting-name">Clear all data</div>
+                                <div class="setting-desc">Permanently delete all developers from the database</div>
+                            </div>
+                            <button class="btn-danger" onclick="clearAllData()">
+                                <i class="ti ti-trash"></i>Clear all
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- END VIEW: SETTINGS -->
+
+    </div>
+    <!-- END .page -->
+
+</div>
+<!-- END .shell -->
+
+<div class="toast" id="toast"></div>
+
+<script src="app.js"></script>
+</body>
+</html>

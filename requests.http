@@ -1,0 +1,110 @@
+###
+GET http://localhost:8080
+
+###
+GET http://localhost:8080//api/v1/software-engineers/2
+
+###
+
+POST http://localhost:8080//api/v1/software-engineers
+Content-Type: application/json
+
+{
+  "id": 1,
+  "name": "Sai",
+  "techstack": "crypto blockchain dp"
+}
+###
+PUT http://localhost:8080/api/v1/software-engineers/2
+Content-Type: application/json
+
+{
+
+  "name": "Pranav",
+  "techstack": "ml nlp cv"
+}
+
+###
+DELETE http://localhost:8080/api/v1/software-engineers/7
+
+###
+POST http://localhost:8080/api/v1/software-engineers
+Content-Type: application/json
+
+{
+
+  "name": "Divya",
+  "techstack": "Java Spring Boot",
+  "email": "divya@gmail.com",
+  "experience": "junior",
+  "location": "Hyderabad"
+}
+
+###
+POST http://localhost:8080/api/v1/software-engineers
+Content-Type: application/json
+
+{
+  "name": "Kartik",
+  "techstack": "Docker Kubernetes",
+  "email": "kartik@gmail.com",
+  "experience": "mid",
+  "location": "Bangalore"
+}
+###
+POST http://localhost:8080/api/v1/software-engineers
+Content-Type: application/json
+
+{
+  "name": "",
+  "techstack": "Java",
+  "email": "divya@gmail.com",
+  "experience": "junior",
+  "location": "Hyderabad"
+}
+###
+POST http://localhost:8080/api/v1/software-engineers
+Content-Type: application/json
+
+{
+  "name": "Divya",
+  "techstack": "Java",
+  "email": "divya@gmail.com",
+  "experience": "expert",
+  "location": "Hyderabad"
+}
+###
+GET http://localhost:8080/api/v1/software-engineers/search?name=Divya
+
+###
+GET http://localhost:8080/api/v1/software-engineers/experience?level=junior
+
+###
+GET http://localhost:8080/api/v1/software-engineers/location?city=Hyderabad
+
+
+
+###
+GET http://localhost:8080/api/v1/software-engineers/paginated?page=1&size=5&sortBy=name
+
+###
+GET http://localhost:8080/api/v1/software-engineers/paginated?page=0&size=5&sortBy=id
+
+### Register User
+
+POST http://localhost:8080/auth/register
+Content-Type: application/json
+
+{
+  "name": "Divya",
+  "email": "divya@gmail.com",
+  "password": "123456"
+}
+###
+POST http://localhost:8080/auth/login
+Content-Type: application/json
+
+{
+"email":"divya@gmail.com",
+"password":"123456"
+}

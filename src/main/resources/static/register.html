@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevTrack — Register</title>
+    <link rel="stylesheet" href="auth.css">
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+</head>
+<body>
+
+<div class="login-container">
+    <div class="login-card">
+
+        <!-- LOGO -->
+        <div class="logo">
+            <div class="logo-icon">
+                <svg width="22" height="22" viewBox="0 0 30 30" fill="none">
+                    <path d="M6 24 L6 10 L15 4 L24 10 L24 24"
+                          stroke="#ffffff" stroke-width="2.2"
+                          stroke-linecap="round" stroke-linejoin="round"/>
+                    <polyline points="10,24 10,16 15,13 20,16 20,24"
+                              stroke="#5DCAA5" stroke-width="2.2"
+                              stroke-linecap="round" stroke-linejoin="round"/>
+                    <circle cx="15" cy="4" r="2.2" fill="#5DCAA5"/>
+                </svg>
+            </div>
+            <h1>DevTrack</h1>
+            <p>Create your account</p>
+        </div>
+
+        <!-- FORM -->
+        <div class="form">
+
+            <div class="input-group">
+                <label>Full name</label>
+                <input type="text" id="name"
+                       placeholder="Enter your full name"
+                       onkeydown="if(event.key==='Enter') register()">
+            </div>
+
+            <div class="input-group">
+                <label>Email</label>
+                <input type="email" id="email"
+                       placeholder="Enter your email"
+                       onkeydown="if(event.key==='Enter') register()">
+            </div>
+
+            <div class="input-group">
+                <label>Password</label>
+                <input type="password" id="password"
+                       placeholder="Min. 6 characters"
+                       onkeydown="if(event.key==='Enter') register()">
+            </div>
+
+            <div class="input-group">
+                <label>Confirm password</label>
+                <input type="password" id="confirmPassword"
+                       placeholder="Re-enter your password"
+                       onkeydown="if(event.key==='Enter') register()">
+            </div>
+
+            <!-- ERROR MESSAGE -->
+            <div id="registerError" class="error-msg" style="display:none"></div>
+
+            <!-- SUCCESS MESSAGE -->
+            <div id="registerSuccess" class="success-msg" style="display:none"></div>
+
+            <!-- REGISTER BUTTON -->
+            <button id="registerBtn" onclick="register()">
+                <i class="ti ti-user-plus"></i> Create Account
+            </button>
+
+            <div class="register-link">
+                Already have an account?
+                <a href="login.html">Sign in</a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="auth.js"></script>
+</body>
+</html>
