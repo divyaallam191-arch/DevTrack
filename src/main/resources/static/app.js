@@ -1,4 +1,4 @@
-const API = 'http://localhost:8080/api/v1/software-engineers';
+const API = 'https://devtrack-production-e6fb.up.railway.app/api/v1/software-engineers';
 
 // ─── STATE ────────────────────────────────────────────
 let allDevs      = [];
