@@ -95,7 +95,7 @@ async function register() {
     btn.innerHTML = '<i class="ti ti-loader-2 spin"></i> Creating account...';
 
     try {
-        const response = await fetch('http://localhost:8080/auth/register', {
+        const response = await fetch(`${AUTH_URL}/register`, {
             method:  'POST',
             headers: { 'Content-Type': 'application/json' },
             body:    JSON.stringify({ name, email, password })
