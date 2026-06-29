@@ -51,6 +51,8 @@ public class SecurityConfig {
                                 .requestMatchers(
                                         // Authentication APIs
                                         "/auth/**",
+                                        "/login",
+                                        "/register",
 
                                         // Frontend pages
                                         "/",

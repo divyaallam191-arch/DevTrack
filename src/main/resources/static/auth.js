@@ -101,7 +101,12 @@ async function register() {
             body:    JSON.stringify({ name, email, password })
         });
 
-        const data = await response.json();
+        let data;
+        try {
+            data = await response.json();
+        } catch (e) {
+            data = {};
+        }
 
         if (!response.ok) {
             errEl.textContent   = data.message || 'Registration failed';
@@ -124,8 +129,7 @@ async function register() {
         console.error('Register error:', error);
         errEl.textContent   = 'Could not connect to server. Is Spring Boot running?';
         errEl.style.display = 'block';
-        btn.disabled        = false;
-        btn.innerHTML       = '<i class="ti ti-user-plus"></i> Create Account';
+        resetBtn(btn, 'register');
     }
 }
 
