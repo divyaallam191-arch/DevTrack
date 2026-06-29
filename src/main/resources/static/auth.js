@@ -1,4 +1,4 @@
-const AUTH_URL = 'http://localhost:8080/auth';
+const AUTH_URL = 'https://devtrack-production-e6fb.up.railway.app';
 
 // ─── LOGIN ────────────────────────────────────────────
 async function login() {
@@ -28,7 +28,12 @@ async function login() {
             body:    JSON.stringify({ email, password })
         });
 
-        const data = await response.json();
+        let data;
+        try {
+            data = await response.json();
+        } catch (e) {
+            throw new Error("Invalid server response");
+        }
 
         if (!response.ok) {
             // Show error from backend
