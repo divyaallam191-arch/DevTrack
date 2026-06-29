@@ -20,13 +20,15 @@ DevTrack is a secure web application for managing software developers. It provid
 - 📊 RESTful API
 - 📄 Swagger API Documentation
 - 💾 MySQL Database Integration
+- 🔐 Secured endpoints using Spring Security
+- 🛡️ Stateless authentication using JWT tokens
 
 ---
 
 ## 🛠️ Tech Stack
 
 ### Backend
-- Java 26
+- Java 21
 - Spring Boot
 - Spring Security
 - Spring Data JPA
@@ -50,6 +52,13 @@ DevTrack is a secure web application for managing software developers. It provid
 - Postman / IntelliJ HTTP Client
 
 ---
+
+## ☁️ Deployment
+
+- 🚀 Backend hosted on Railway
+- 🌐 Frontend served via Spring Boot static resources
+- 🔄 Continuous deployment integrated with GitHub
+- 🗄️ MySQL database configured using Railway environment variables
 
 ## 📂 Project Structure
 
@@ -77,7 +86,7 @@ src
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/YOUR_GITHUB_USERNAME/DevTrack.git
+git clone https://github.com/divyaallam191-arch/DevTrack.git
 ```
 
 ### 2. Navigate to the project
@@ -113,7 +122,7 @@ mvn spring-boot:run
 After starting the application, open:
 
 ```
-http://localhost:8080/swagger-ui.html
+https://devtrack-production-e6fb.up.railway.app/swagger-ui/index.html
 ```
 
 ---
@@ -142,27 +151,10 @@ Include it in protected requests:
 Authorization: Bearer <your_token>
 ```
 
----
-
-## 📸 Screenshots
-
-### Login Page
-
-*(Add screenshot here after deployment)*
-
-### Dashboard
-
-*(Add screenshot here after deployment)*
-
-### Swagger API
-
-*(Add screenshot here after deployment)*
-
----
 
 ## 🌐 Live Demo
 
-🚧 Coming Soon (Railway Deployment)
+https://devtrack-production-e6fb.up.railway.app/login.html
 
 ---
 
@@ -182,7 +174,7 @@ Authorization: Bearer <your_token>
 
 **Divya Allam**
 
-GitHub: https://github.com/YOUR_GITHUB_USERNAME
+GitHub: https://github.com/divyaallam191-arch
 
 ---
 
