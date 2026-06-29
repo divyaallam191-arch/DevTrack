@@ -154,14 +154,13 @@ Authorization: Bearer <your_token>
 
 ## 🌐 Live Demo
 
-https://devtrack-production-e6fb.up.railway.app/login.html
+https://devtrack-production-e6fb.up.railway.app/
 
 ---
 
 ## 🔮 Future Enhancements
 
 - Role-based Authorization (Admin/User)
-- Pagination & Sorting
 - File Upload for Profile Images
 - Email Verification
 - Password Reset
