@@ -81,7 +81,7 @@ public class AuthenticationService {
 
         userRepository.save(user);
 
-        return new RegisterResponse("User registered successfully");
+        return new RegisterResponse("Recruiter registered successfully");
 
     }
 

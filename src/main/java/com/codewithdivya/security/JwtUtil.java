@@ -52,6 +52,12 @@ public class JwtUtil {
         return extractClaim(token, Claims::getSubject);
 
     }
+    public String extractRole(String token) {
+
+        return extractClaim(token,
+                claims -> claims.get("role", String.class));
+
+    }
 
     public Date extractExpiration(String token) {
 
