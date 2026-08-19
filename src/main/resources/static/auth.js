@@ -1,4 +1,4 @@
-const AUTH_URL = 'https://devtrack-production-e6fb.up.railway.app';
+const AUTH_URL = 'https://devtrack19.onrender.com';
 
 // ─── LOGIN ────────────────────────────────────────────
 async function login() {
