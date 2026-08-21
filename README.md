@@ -10,7 +10,14 @@
 
 **Live Application:** (https://devtrack19.onrender.com/)
 
+## 📖 API Documentation
 
+DevTrack provides interactive API documentation using **Swagger/OpenAPI**.
+
+
+```text
+https://devtrack19.onrender.com/swagger-ui/index.html
+```
 
 ---
 
@@ -75,10 +82,10 @@ DevTrack follows a layered Spring Boot architecture:
                     │        Aiven         │
                     └──────────────────────┘
 
-              Authentication
-                    │
-                    ▼
-          Spring Security + JWT
+                         Authentication
+                               │
+                               ▼
+                      Spring Security + JWT
 ```
 
 ---
@@ -181,15 +188,6 @@ The application connects to the hosted MySQL database through environment-based 
 
 ---
 
-## 📖 API Documentation
-
-DevTrack provides interactive API documentation using **Swagger/OpenAPI**.
-
-After starting the application locally, Swagger UI is available at:
-
-```text
-http://localhost:8080/swagger-ui/index.html
-```
 
 The API documentation allows developers to explore available endpoints and test API requests directly from the browser.
 
