@@ -312,12 +312,6 @@ http://localhost:8080
 
 ---
 
-## 🌐 Live Demo
-
-### 🚀 Deployed Application
-
-**Render:**
-Replace this with your current Render URL.
 
 ### 📖 API Documentation
 
